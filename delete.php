@@ -1,15 +1,20 @@
 <?php
+include "header.php";
+$con = new Connection();
+$con = $con->connect();
 
-$db = new mysqli('localhost', 'root', '', 'les 5 php');
+if (isset($_POST) && count($_POST)>0)
+foreach ($_POST as $key => $value) {
+    $con->query("delete from posts where posts.postID = '$key'");
 
-$name = $_POST ['naam'];
-$age = $_POST ['age'];
+    $message = "Records have been deleted";
+    echo $message;
+    header('refresh:3; overview.php');
 
-$sql = "insert into users values('NULL','$name','$age')";
-
-if ($db->query($sql) === true){
-    echo 'record updated';
-    header('refresh:5; dbconnectie.php');
-    } else {
-    echo 'error updating record:' . $db->error;
+} else {
+    echo "Error: " . $sql . "<br>" . $con->error;
 }
+
+?>
+
+
