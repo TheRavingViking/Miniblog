@@ -1,21 +1,25 @@
 <?php
+include "session.php";
+include "header.php";
 
-print_r($_POST);
+//print_r($_POST);
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])) {
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if($user->login($username,$password)){
+    if ($user->login($username, $password)) {
 
 //logged in return to index page
-header('Location: index.php');
-exit;
+        echo "logged in!";
+        header('Location: overview.php');
+        exit;
 
 
-} else {
-$message = '<h1>Wrong username or password</h1>';
+    } else {
+        $message = '<h1>Wrong username or password</h1>';
+    }
 }
 
 ?>
