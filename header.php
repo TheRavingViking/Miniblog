@@ -1,4 +1,4 @@
-<?php include 'session.php';?>
+<?php include 'connection.php';?>
 <!DOCTYPE html>
 <html>
 
