@@ -1,5 +1,3 @@
-
-
 <html>
 <h1>Register here!</h1>
 <form method="post" action="register_insert.php">
