@@ -2,15 +2,27 @@
 include "header.php";
 $con = new Connection();
 $con = $con->connect();
-$id = $_GET['postID'];
-$query = "SELECT postID, postTitle, postCont, postDate FROM posts WHERE postID = '&$id&'";
-echo $query;
+$id = $_GET['id'];
+$query = "SELECT postID, postTitle, postCont, postDate FROM posts WHERE postID = '$id'";
 $result = mysqli_query($con, $query);
 
-if (mysqli_num_rows($result) > 0) {
+foreach ($result as $rows) :
 
-    while ($row = mysqli_fetch_assoc($result)) {
-    }
-}
-?>
-s
+    echo $rows['postTitle'];
+    echo '<br />';
+    echo $rows['postCont'];
+    echo '<br />';
+    echo $rows['postDate'];
+    echo '<br />';
+echo '<hr />';
+
+endforeach; ?>
+
+
+<html>
+<form method="post" action="insert.php">
+    <input type="text" name="Comment" placeholder="place your comment here">
+    <input type="submit">
+</form>
+
+</html>
