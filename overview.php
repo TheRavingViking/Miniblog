@@ -1,10 +1,19 @@
 <?php
 include "header.php";
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perpage = isset($_GET['per-page']) && $_GET['per-page'] <= 50 ? (int) $_GET['per-page'] : 5;
+
+$start = ($page > 1) ? ($page * $perpage) - $perpage : 0;
+
+
 $con = new Connection();
 $con = $con->connect();
+$sql = "SELECT postID, postDesc, postTitle, postDate FROM posts ORDER BY postDate DESC";
 
-$sql = 'SELECT postID, postDesc, postTitle, postDate FROM posts ORDER BY postDate DESC';
 $result = mysqli_query($con, $sql);
+
+
 ?>
 <html>
 <form method="post" action="delete.php">
@@ -33,4 +42,5 @@ $result = mysqli_query($con, $sql);
 </table>
     <button>submit</button>
 </form>
-</html>
+
+

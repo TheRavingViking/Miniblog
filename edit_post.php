@@ -7,8 +7,9 @@ $title = $_POST ['postTitle'];
 $desc = $_POST ['postDesc'];
 $cont = $_POST ['postCont'];
 $updateddate = date("Y-m-d H:i:s");
+$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-$sql = "UPDATE `posts` SET `postTitle` = '$title' , `postDesc` = '$desc' , `postCont` = '$cont'  WHERE `posts`.`postID` = '$id' ";
+$sql = "UPDATE `posts` SET `postTitle` = '$title' , `postDesc` = '$desc' , `postCont` = '$cont' , `image` = '$image'  WHERE `posts`.`postID` = '$id' ";
 
 
 if ($con->query($sql) === TRUE) {

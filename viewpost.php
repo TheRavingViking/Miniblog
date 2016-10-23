@@ -3,7 +3,7 @@ include "header.php";
 $con = new Connection();
 $con = $con->connect();
 $id = $_GET['id'];
-$query = "SELECT postID, postTitle, postCont, postDate FROM posts WHERE postID = '$id'";
+$query = "SELECT postID, postTitle, postCont, postDate, image FROM posts WHERE postID = '$id'";
 $result = mysqli_query($con, $query);
 
 
@@ -14,6 +14,8 @@ foreach ($result as $rows) :
     echo $rows['postCont'];
     echo '<br />';
     echo $rows['postDate'];
+    echo '<br />';
+    echo '<img src="data:image;base64,'.base64_encode($rows['image']) .'" />';
     echo '<br />';
 echo '<hr />';
 
