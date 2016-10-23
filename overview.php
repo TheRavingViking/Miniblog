@@ -25,6 +25,7 @@ $result = mysqli_query($con, $sql);
         <th>Delete</th>
         <th>more info</th>
         <th>Edit Post</th>
+        <th>Add/Edit photo</th>
     </tr>
 
     <?php foreach ($result as $rows) : ?>
@@ -36,6 +37,7 @@ $result = mysqli_query($con, $sql);
             <td> <input type="checkbox" name="<?php echo $rows['postID']; ?>"></td>
             <td> <a href="viewpost.php?id=<?php echo $rows['postID'];?>" >Read More</a> </td>
             <td> <a href="edit_post_form.php?id=<?php echo $rows['postID'];?>" >Edit Post</a> </td>
+            <td> <a href="edit_photo_form.php?id=<?php echo $rows['postID'];?>" >Add/Edit Photo</a> </td>
         </tr>
     <?php endforeach; ?>
 

@@ -7,7 +7,14 @@ $title = $_POST ['postTitle'];
 $desc = $_POST ['postDesc'];
 $cont = $_POST ['postCont'];
 $date = date("Y-m-d H:i:s");
-$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+if(!empty($_FILES['image']['tmp_name'])
+        && file_exists($_FILES['image']['tmp_name'])) {
+        $image= addslashes(file_get_contents($_FILES['image']['tmp_name']));
+} else {
+    $image = null;
+}
+
+
 
 $sql = "INSERT INTO `posts` (`postID`, `postTitle`, `postDesc`, `postCont`, `postDate`, `image`) VALUES (NULL, '$title', '$desc', '$cont', '$date', '$image')";
 

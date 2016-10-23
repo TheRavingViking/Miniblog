@@ -15,11 +15,20 @@ foreach ($result as $rows) :
     echo '<br />';
     echo $rows['postDate'];
     echo '<br />';
-    echo '<img src="data:image;base64,'.base64_encode($rows['image']) .'" />';
+    if (!empty($rows['image'])) {
+        echo '<img src="data:image;base64,' . base64_encode($rows['image']) . '" />';
+    }
+    else {
+    }
+
     echo '<br />';
 echo '<hr />';
 
-endforeach; ?>
+endforeach;
+
+
+
+?>
 
 
 <html>
@@ -51,6 +60,3 @@ foreach ($result2 as $row) :
 endforeach;
 
 ?>
-<!--$sql = "SELECT commentID, userID, comment FROM comments WHERE postID = '$id' ORDER BY commentDate DESC";-->
-
-<!--"SELECT hours.id, hours.startTime, hours.endTime, hours.date, hours.time, hours.comment, user.firstName, user.prefix, user.surname FROM hours INNER JOIN user ON hours.user_id=user.id where hours.date BETWEEN '$from' and '$to'";-->
