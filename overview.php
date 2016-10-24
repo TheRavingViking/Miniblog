@@ -1,11 +1,6 @@
 <?php
 include "header.php";
-
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$perpage = isset($_GET['per-page']) && $_GET['per-page'] <= 50 ? (int) $_GET['per-page'] : 5;
-
-$start = ($page > 1) ? ($page * $perpage) - $perpage : 0;
-
+include "pagination.php";
 
 $con = new Connection();
 $con = $con->connect();
@@ -13,8 +8,13 @@ $sql = "SELECT postID, postDesc, postTitle, postDate FROM posts ORDER BY postDat
 
 $result = mysqli_query($con, $sql);
 
+if(isset($result))// results from Step 7
+{ }
+
 
 ?>
+
+
 <html>
 <form method="post" action="delete.php">
 <table>
@@ -45,4 +45,44 @@ $result = mysqli_query($con, $sql);
     <button>submit</button>
 </form>
 
+<html>
+<body>
+<div id="pagination">
+    <div id="pagiCount">
+        <?php
+        if(isset($pages))
+        {
+            if($pages > 1)
+            {    if($cur_page > $num_links)     // for taking to page 1 //
+            {   $dir = "first";
+                echo '<span id="prev"> <a href="'.$_SERVER['PHP_SELF'].'?page='.(1).'">'.$dir.'</a> </span>';
+            }
+                if($cur_page > 1)
+                {
+                    $dir = "prev";
+                    echo '<span id="prev"> <a href="'.$_SERVER['PHP_SELF'].'?page='.($cur_page-1).'">'.$dir.'</a> </span>';
+                }
+
+                for($x=$start ; $x<=$end ;$x++)
+                {
+
+                    echo ($x == $cur_page) ? '<strong>'.$x.'</strong> ':'<a href="'.$_SERVER['PHP_SELF'].'?page='.$x.'">'.$x.'</a> ';
+                }
+                if($cur_page < $pages )
+                {   $dir = "next";
+                    echo '<span id="next"> <a href="'.$_SERVER['PHP_SELF'].'?page='.($cur_page+1).'">'.$dir.'</a> </span>';
+                }
+                if($cur_page < ($pages-$num_links) )
+                {   $dir = "last";
+
+                    echo '<a href="'.$_SERVER['PHP_SELF'].'?page='.$pages.'">'.$dir.'</a> ';
+                }
+            }
+        }
+        ?>
+    </div>
+</div>
+
+</body>
+</html>
 
