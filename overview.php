@@ -1,15 +1,11 @@
 <?php
 include "header.php";
-include "pagination.php";
 
 $con = new Connection();
 $con = $con->connect();
 $sql = "SELECT postID, postDesc, postTitle, postDate FROM posts ORDER BY postDate DESC";
 
 $result = mysqli_query($con, $sql);
-
-if(isset($result))// results from Step 7
-{ }
 
 
 ?>

@@ -10,6 +10,9 @@ if (isset($_POST['username'])) {
     $con = $con->connect();
     $user = $_POST['username'];
     $pass = $_POST['password'];
+    $salt = "zout";
+    $pass = md5($salt.$pass);
+
     $sql = "select * from members where username='$user' and password='$pass' limit 1 ";
     $result = mysqli_query($con, $sql);
     $rows = mysqli_num_rows($result);
