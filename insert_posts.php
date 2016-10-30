@@ -2,10 +2,10 @@
 include "header.php";
 $con = new Connection();
 $con = $con->connect();
-
-$title = $_POST ['postTitle'];
-$desc = $_POST ['postDesc'];
-$cont = $_POST ['postCont'];
+$user_id=$_SESSION['user_id'];
+$title = mysqli_real_escape_string($con, $_POST ['postTitle']);
+$desc = mysqli_real_escape_string($con, $_POST ['postDesc']);
+$cont = mysqli_real_escape_string($con,$_POST ['postCont']);
 $date = date("Y-m-d H:i:s");
 if(!empty($_FILES['image']['tmp_name'])
         && file_exists($_FILES['image']['tmp_name'])) {
@@ -16,7 +16,7 @@ if(!empty($_FILES['image']['tmp_name'])
 
 
 
-$sql = "INSERT INTO `posts` (`postID`, `postTitle`, `postDesc`, `postCont`, `postDate`, `image`) VALUES (NULL, '$title', '$desc', '$cont', '$date', '$image')";
+$sql = "INSERT INTO `posts` (`postID`, `postTitle`, `postDesc`, `postCont`, `postDate`, `image`, `user_id`) VALUES (NULL, '$title', '$desc', '$cont', '$date', '$image', '$user_id')";
 
 
 if ($con->query($sql) === TRUE) {
