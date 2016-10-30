@@ -1,24 +1,27 @@
 <?php
 include "header.php";
-
+$user_session =$_SESSION['user_id'];
+$id = $_GET['id'];
 $con = new Connection();
 $con = $con->connect();
-$user =$_SESSION['user_id'];
+$sql = "SELECT `user_id` FROM `posts` WHERE '$id'";
+$result = mysqli_query($con, $sql);
+$data = $result->fetch_array();
+$user = $data['user_id'];
 
-$id= $_GET['id'];
+if($user_session==$user){
 
-if($_SESSION['isAdmin']=true){
-
-    $con->query("delete from posts where posts.postID = '$id' AND '$user'");
+    $con->query("delete from posts where posts.postID = '$id'");
     $message = "Record has been deleted";
     echo $message;
     echo '<br />';
-    header('refresh:3; overview.php');
+    header('location: overview.php');
 
 } else {
-    echo "Error: " . $sql . "<br>" . $con->error;
+    echo "Error: You're not the owner of this post, ask the owner or Admin to delete this post";
+    header('refresh:5; overview.php');
 }
 
-?>
+//?>
 
 
