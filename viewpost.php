@@ -16,7 +16,7 @@ foreach ($result as $rows) :
     echo $rows['postDate'];
     echo '<br />';
     if (!empty($rows['image'])) {
-        echo '<img src="data:image;base64,' . base64_encode($rows['image']) . '" />';
+        echo '<img src="data:image;base64,' . base64_encode($rows['image']) . '" class="img-thumbnail" width="720"/>';
     }
     else {
     }

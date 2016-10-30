@@ -9,6 +9,15 @@ if(!isset($_SESSION['username'])){
 
 ?>
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 <!DOCTYPE html>
@@ -16,10 +25,17 @@ if(!isset($_SESSION['username'])){
 
 <body>
 <header>
-
-    <div>
-        <a class="header-button" href="overview.php"> overview </a>
-        <a class="header-button" href="add_post_form.php">add posts </a>
-        <a class="header-button" href="logout.php">logout </a>
-    </div>
+    <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="overview.php"">Miniblog</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="overview.php">Home</a></li>
+                <li><a href="add_post_form.php">Add Post</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>

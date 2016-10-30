@@ -1,11 +1,15 @@
 <?php
 include "header.php";
+
 $con = new Connection();
 $con = $con->connect();
+$user =$_SESSION['user_id'];
 
-if (isset($_POST) && count($_POST)>0)
-foreach ($_POST as $key => $value) {
-    $con->query("delete from posts where posts.postID = '$key'");
+$id= $_GET['id'];
+
+if($_SESSION['isAdmin']=true){
+
+    $con->query("delete from posts where posts.postID = '$id' AND '$user'");
     $message = "Record has been deleted";
     echo $message;
     echo '<br />';

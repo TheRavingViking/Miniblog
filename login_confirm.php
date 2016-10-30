@@ -19,6 +19,10 @@ if (isset($_POST['username'])) {
     $id = $result->fetch_assoc();
     $_SESSION['username'] = $id['username'];
     $_SESSION['user_id'] = $id['user_id'];
+    if($rows[0]['isAdmin']==1){
+        $_SESSION['isAdmin']=true;
+    }else{$_SESSION['isAdmin']=false;}
+
     if ($rows == 1) {
         $message = "Legendary!!!";
         echo $message;

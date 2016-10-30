@@ -12,8 +12,7 @@ $sql = "INSERT INTO `comments` (`commentID`, `postID`, `userID`, `comment`, `com
 
 
 if ($con->query($sql) === TRUE) {
-    echo "New record created successfully";
-    header("refresh:1; viewpost.php?id=$postID");
+    header("location: viewpost.php?id=$postID");
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
